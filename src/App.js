@@ -1,9 +1,9 @@
 // App.js
-import React, { useState } from "react";
-import MapComponent from "./MapComponent";
-import VideoCanvas from "./VideoCanvas";
-import PinchZoomHandler from "./PinchZoomHandler";
-import VoiceRecognition from "./VoiceRecognition"; // <-- Import the new component
+import React, { useState } from 'react';
+import MapComponent from './MapComponent';
+import VideoCanvas from './VideoCanvas';
+import PinchZoomHandler from './PinchZoomHandler';
+import VoiceRecognition from './VoiceRecognition'; // <-- Import the new component
 
 function App() {
   const [viewport, setViewport] = useState({
@@ -12,7 +12,7 @@ function App() {
     zoom: 8,
   });
   const [landmarks, setLandmarks] = useState([]);
-  console.log("in APP:", landmarks);
+  console.log('in APP:', landmarks);
 
   const handleZoom = (pinchDelta) => {
     setViewport((prevViewport) => ({
@@ -30,11 +30,11 @@ function App() {
   };
 
   return (
-    <div style={{ height: "100vh", width: "100%" }}>
-      <MapComponent viewport={viewport} onViewportChange={setViewport} />
-      <VideoCanvas onLandmarks={setLandmarks} />
-      <PinchZoomHandler onZoom={handleZoom} landmarks={landmarks} />
-      <VoiceRecognition onLocationUpdate={handleLocationUpdate} />{" "}
+    <div style={{ height: '100vh', width: '100%' }}>
+      {/* <MapComponent viewport={viewport} onViewportChange={setViewport} />
+      <VideoCanvas onLandmarks={setLandmarks} /> */}
+      {/* <PinchZoomHandler onZoom={handleZoom} landmarks={landmarks} /> */}
+      <VoiceRecognition onLocationUpdate={handleLocationUpdate} />{' '}
     </div>
   );
 }
