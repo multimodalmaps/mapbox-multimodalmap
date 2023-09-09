@@ -30,11 +30,11 @@ function App() {
   };
 
   return (
-    <div style={{ height: "100vh", width: "100%" }}>
+    <div style={{ height: "60vh", width: "100%", position: "absolute" }}>
       <MapComponent viewport={viewport} onViewportChange={setViewport} />
       <VideoCanvas onLandmarks={setLandmarks} />
       <PinchZoomHandler onZoom={handleZoom} landmarks={landmarks} />
-      <VoiceRecognition onLocationUpdate={handleLocationUpdate} />{" "}
+      {/* <VoiceRecognition onLocationUpdate={handleLocationUpdate} /> */}
     </div>
   );
 }

@@ -8,7 +8,9 @@ export default function MapComponent({ viewport, onViewportChange }) {
       height="100%"
       mapStyle="mapbox://styles/mapbox/streets-v11"
       onViewportChange={onViewportChange}
-      mapboxAccessToken={process.env.REACT_APP_MAPBOX_ACCESS_TOKEN}
+      mapboxAccessToken={
+        "pk.eyJ1IjoiaGd1em1hbnNvdG8iLCJhIjoiY2xtMWlxd2VuMGI0cDNlbGZxanAwNG9uNiJ9.AGPt6Wgr7NXiLgu69gCt5A"
+      }
     />
   );
 }
