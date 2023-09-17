@@ -9,6 +9,7 @@ export default function PinchZoomHandler({ onZoom, landmarks }) {
 
   useEffect(() => {
     handleLandmarks(landmarks);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [landmarks]);
 
   console.log("in PinchZoomHandler:", landmarks);
