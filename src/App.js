@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import MapComponent from "./MapComponent";
 import VideoCanvas from "./VideoCanvas";
 import PinchZoomHandler from "./PinchZoomHandler";
+// eslint-disable-next-line no-unused-vars
 import VoiceRecognition from "./VoiceRecognition"; // <-- Import the new component
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
     }));
   };
 
+  // eslint-disable-next-line no-unused-vars
   const handleLocationUpdate = (newLocation) => {
     setViewport((prevViewport) => ({
       ...prevViewport,
