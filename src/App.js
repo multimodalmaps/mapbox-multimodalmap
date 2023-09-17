@@ -30,7 +30,7 @@ function App() {
   };
 
   return (
-    <div style={{ height: "60vh", width: "100%", position: "absolute" }}>
+    <div style={{ height: "80vh", width: "100%", position: "absolute" }}>
       <MapComponent viewport={viewport} onViewportChange={setViewport} />
       <VideoCanvas onLandmarks={setLandmarks} />
       <PinchZoomHandler onZoom={handleZoom} landmarks={landmarks} />

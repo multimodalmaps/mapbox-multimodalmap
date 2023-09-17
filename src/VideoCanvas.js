@@ -12,7 +12,7 @@ export default function VideoCanvas({ onLandmarks }) {
   }, []);
 
   return (
-    <div style={{ position: "relative", width: "1280px", height: "720px" }}>
+    <div style={{ position: "relative", width: "300px", height: "5000px" }}>
       <video
         className="input_video"
         ref={videoRef}
@@ -23,7 +23,7 @@ export default function VideoCanvas({ onLandmarks }) {
           position: "absolute",
           top: "10px",
           right: "10px",
-          zIndex: 1000,
+          zIndex: 0,
           width: "240px",
           height: "135px",
           border: "2px solid white",
@@ -39,7 +39,7 @@ export default function VideoCanvas({ onLandmarks }) {
           position: "absolute",
           top: "10px",
           right: "10px",
-          zIndex: 1001,
+          zIndex: 1,
         }}
       ></canvas>
     </div>
