@@ -9,7 +9,7 @@ export default function VideoCanvas({ onLandmarks }) {
     if (videoRef.current && canvasRef.current) {
       new MediaPipeManager(videoRef.current, canvasRef.current, onLandmarks);
     }
-  }, []);
+  }, [onLandmarks]);
 
   return (
     <div style={{ position: "relative", width: "300px", height: "5000px" }}>
