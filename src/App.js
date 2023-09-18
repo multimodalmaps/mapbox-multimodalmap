@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import MapComponent from "./MapComponent";
 import VideoCanvas from "./VideoCanvas";
-import PinchZoomHandler from "./PinchZoomHandler";
+// import PinchZoomHandler from "./PinchZoomHandler";
 // eslint-disable-next-line no-unused-vars
 import VoiceRecognition from "./VoiceRecognition"; // <-- Import the new component
 import LandmarkOverlay from "./LandmarkOverlay"; // Import at the top
@@ -19,6 +19,7 @@ function App() {
   const [landmarks, setLandmarks] = useState([]);
   console.log("in APP:", landmarks);
 
+  // eslint-disable-next-line no-unused-vars
   const handleZoom = (pinchDelta) => {
     setViewport((prevViewport) => ({
       ...prevViewport,
