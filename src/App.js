@@ -5,6 +5,7 @@ import VideoCanvas from "./VideoCanvas";
 import PinchZoomHandler from "./PinchZoomHandler";
 // eslint-disable-next-line no-unused-vars
 import VoiceRecognition from "./VoiceRecognition"; // <-- Import the new component
+import LandmarkOverlay from "./LandmarkOverlay"; // Import at the top
 
 function App() {
   const [viewport, setViewport] = useState({
@@ -32,9 +33,10 @@ function App() {
   };
 
   return (
-    <div style={{ height: "80vh", width: "100%", position: "absolute" }}>
+    <div style={{ height: "100vh", width: "100%", position: "relative" }}>
       <MapComponent viewport={viewport} onViewportChange={setViewport} />
       <VideoCanvas onLandmarks={setLandmarks} />
+      <LandmarkOverlay landmarks={landmarks} />
       <PinchZoomHandler onZoom={handleZoom} landmarks={landmarks} />
       {/* <VoiceRecognition onLocationUpdate={handleLocationUpdate} /> */}
     </div>
