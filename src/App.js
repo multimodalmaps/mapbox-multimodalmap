@@ -46,13 +46,13 @@ function App() {
 
   return (
     <div style={{ height: "100vh", width: "100%", position: "relative" }}>
+      <VoiceRecognition onLocationUpdate={handleLocationUpdate} />
+
       <MapComponent viewport={viewport} onViewportChange={setViewport} />
       <VideoCanvas onLandmarks={setLandmarks} />
       <LandmarkOverlay landmarks={landmarks} />
       {/* <PinchZoomHandler onZoom={handleZoom} landmarks={landmarks} /> */}
       <FingerPointHandler onPointMove={onPointMove} landmarks={landmarks} />
-
-      <VoiceRecognition onLocationUpdate={handleLocationUpdate} />
     </div>
   );
 }
