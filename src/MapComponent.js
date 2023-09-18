@@ -8,6 +8,7 @@ export default function MapComponent({ viewport, onViewportChange }) {
       height="100%"
       mapStyle="mapbox://styles/mapbox/streets-v11"
       onViewportChange={onViewportChange}
+      dragPan={true}
       mapboxAccessToken={
         "pk.eyJ1IjoiaGd1em1hbnNvdG8iLCJhIjoiY2xtMWlxd2VuMGI0cDNlbGZxanAwNG9uNiJ9.AGPt6Wgr7NXiLgu69gCt5A"
       }

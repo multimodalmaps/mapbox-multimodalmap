@@ -3,11 +3,10 @@ import MediaPipeManager from "./MediaPipeManager";
 
 export default function VideoCanvas({ onLandmarks }) {
   const videoRef = useRef(null);
-  const canvasRef = useRef(null);
 
   useEffect(() => {
-    if (videoRef.current && canvasRef.current) {
-      new MediaPipeManager(videoRef.current, canvasRef.current, onLandmarks);
+    if (videoRef.current) {
+      new MediaPipeManager(videoRef.current, onLandmarks);
     }
   }, [onLandmarks]);
 
@@ -20,6 +19,7 @@ export default function VideoCanvas({ onLandmarks }) {
         muted
         playsInline
         style={{
+          display: "none",
           position: "absolute",
           top: "10px",
           right: "10px",
@@ -30,18 +30,6 @@ export default function VideoCanvas({ onLandmarks }) {
           borderRadius: "5px",
         }}
       ></video>
-      <canvas
-        className="output_canvas"
-        ref={canvasRef}
-        width="240"
-        height="135"
-        style={{
-          position: "absolute",
-          top: "10px",
-          right: "10px",
-          zIndex: 11,
-        }}
-      ></canvas>
     </div>
   );
 }
