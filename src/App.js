@@ -51,7 +51,7 @@ function App() {
       {/* <PinchZoomHandler onZoom={handleZoom} landmarks={landmarks} /> */}
       <FingerPointHandler onPointMove={onPointMove} landmarks={landmarks} />
 
-      {/* <VoiceRecognition onLocationUpdate={handleLocationUpdate} /> */}
+      <VoiceRecognition onLocationUpdate={handleLocationUpdate} />
     </div>
   );
 }
