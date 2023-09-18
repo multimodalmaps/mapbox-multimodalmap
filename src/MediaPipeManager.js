@@ -61,6 +61,7 @@ export default class MediaPipeManager {
           lineWidth: 2,
         });
       }
+      console.log("in MediaPipeManager:", results.multiHandLandmarks);
       this.onLandmarksDetected(results.multiHandLandmarks);
     }
 
