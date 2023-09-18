@@ -1,25 +1,24 @@
-name: Example workflow for S3 Deploy
-on: [push]
+name: s3-depl
+
+on:
+  push:
+    branches:
+      - master
+
 jobs:
-  run:
+  build:
     runs-on: ubuntu-latest
-    env:
-      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      AWS_DEFAULT_REGION: us-west-2
     steps:
-      - uses: actions/checkout@v1
-
-      - name: Install dependencies
-        run: yarn
-
-      - name: Build
-        run: yarn build
-
-      - name: Deploy
-        uses: lbertenasco/s3-deploy@v1
+      - uses: actions/checkout@v2
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
         with:
-          folder: build
-          bucket: multimodalmap-frontend
-          dist-id: E11C4MT67HDWGE
-          invalidation: / *
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-west-2
+      - name: Build React App
+        run: npm install && npm run build
+      - name: Deploy app build to S3 bucket
+        run: aws s3 sync ./build s3://my-cicd-react-app --delete
+      - name: Invalidate cache
+        run: aws cloudfront create-invalidation --distribution-id E11C4MT67HDWGE --paths "/*"
