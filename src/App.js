@@ -4,8 +4,9 @@ import MapComponent from "./MapComponent";
 import VideoCanvas from "./VideoCanvas";
 // import PinchZoomHandler from "./PinchZoomHandler";
 // eslint-disable-next-line no-unused-vars
-import VoiceRecognition from "./VoiceRecognition"; // <-- Import the new component
-import LandmarkOverlay from "./LandmarkOverlay"; // Import at the top
+import VoiceRecognition from "./VoiceRecognition";
+import TranscriptionOverlay from "./TranscriptionOverlay";
+import LandmarkOverlay from "./LandmarkOverlay";
 import FingerPointHandler from "./FingerPointerHandler";
 
 function App() {
@@ -17,7 +18,7 @@ function App() {
     zoom: 8,
   });
   const [landmarks, setLandmarks] = useState([]);
-  console.log("in APP:", landmarks);
+  const [transcription, setTranscription] = useState("");
 
   // eslint-disable-next-line no-unused-vars
   const handleZoom = (pinchDelta) => {
@@ -46,11 +47,15 @@ function App() {
 
   return (
     <div style={{ height: "100vh", width: "100%", position: "relative" }}>
-      <VoiceRecognition onLocationUpdate={handleLocationUpdate} />
-
       <MapComponent viewport={viewport} onViewportChange={setViewport} />
+      <VoiceRecognition
+        onTranscription={setTranscription}
+        onLocationUpdate={handleLocationUpdate}
+      />
       <VideoCanvas onLandmarks={setLandmarks} />
+
       <LandmarkOverlay landmarks={landmarks} />
+      <TranscriptionOverlay transcription={transcription} />
       {/* <PinchZoomHandler onZoom={handleZoom} landmarks={landmarks} /> */}
       <FingerPointHandler onPointMove={onPointMove} landmarks={landmarks} />
     </div>

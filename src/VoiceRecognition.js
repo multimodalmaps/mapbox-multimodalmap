@@ -2,7 +2,10 @@ import io from "socket.io-client";
 import { useEffect } from "react";
 import { useReactMediaRecorder } from "react-media-recorder";
 
-export default function VoiceRecognition({ onLocationUpdate }) {
+export default function VoiceRecognition({
+  onTranscription,
+  onLocationUpdate,
+}) {
   const { status, startRecording, stopRecording, mediaBlobUrl } =
     useReactMediaRecorder({
       audio: true,
@@ -20,7 +23,6 @@ export default function VoiceRecognition({ onLocationUpdate }) {
 
   useEffect(() => {
     if (status === "stopped" && mediaBlobUrl) {
-      // Connect to the socket only when the recording is stopped and there's data to send
       const socket = io("http://localhost:5001");
 
       socket.on("connect", async () => {
@@ -31,9 +33,9 @@ export default function VoiceRecognition({ onLocationUpdate }) {
         }
       });
 
-      socket.on("location_pinpoint", (data) => {
-        onLocationUpdate(data);
-        socket.disconnect(); // Disconnect after receiving data
+      socket.on("transcription", (transcription) => {
+        onTranscription(transcription);
+        socket.disconnect();
       });
 
       socket.on("connect_error", (error) => {
@@ -43,12 +45,26 @@ export default function VoiceRecognition({ onLocationUpdate }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [status, mediaBlobUrl]);
 
+  const toggleRecording = () => {
+    if (status !== "recording") {
+      startRecording();
+    } else {
+      stopRecording();
+    }
+  };
+
   return (
-    <>
-      <p>{status}</p>
-      <button onClick={startRecording}>Start Recording</button>
-      <button onClick={stopRecording}>Stop Recording</button>
-      {status === "stopped" && <audio src={mediaBlobUrl} controls autoPlay />}
-    </>
+    <div
+      style={{
+        position: "absolute",
+        top: "0",
+        left: "0",
+        padding: "10px",
+      }}
+    >
+      <button onClick={toggleRecording}>
+        {status === "recording" ? "Stop Recording" : "Start Recording"}
+      </button>
+    </div>
   );
 }
