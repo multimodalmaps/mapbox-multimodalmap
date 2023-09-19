@@ -23,7 +23,7 @@ export default function VoiceRecognition({
 
   useEffect(() => {
     if (status === "stopped" && mediaBlobUrl) {
-      const socket = io("http://localhost:5001");
+      const socket = io(process.env.REACT_APP_SERVER_URL);
 
       socket.on("connect", async () => {
         console.log("Connected to the server");
