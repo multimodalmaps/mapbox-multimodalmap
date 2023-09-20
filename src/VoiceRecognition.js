@@ -23,11 +23,13 @@ export default function VoiceRecognition({
 
   useEffect(() => {
     if (status === "stopped" && mediaBlobUrl) {
-      const url =
+      let url =
         process.env.NODE_ENV === "development"
           ? process.env.REACT_APP_BACKEND_URL_PRODUCTION
           : process.env.REACT_APP_BACKEND_URL_PRODUCTION;
 
+      url =
+        "http://multimodalmap-voicerecognition-dev.us-west-2.elasticbeanstalk.com/";
       console.log(url);
       const socket = io(url);
 
