@@ -28,8 +28,7 @@ export default function VoiceRecognition({
           ? process.env.REACT_APP_BACKEND_URL_PRODUCTION
           : process.env.REACT_APP_BACKEND_URL_PRODUCTION;
 
-      url =
-        "https://multimodalmap-voicerecognition-dev.us-west-2.elasticbeanstalk.com/";
+      url = "https://d26pk5sdxu3m5h.cloudfront.net";
       console.log(url);
       const socket = io(url);
 

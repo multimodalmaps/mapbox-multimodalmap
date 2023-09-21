@@ -1,7 +1,24 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 export default function TranscriptionOverlay({ transcription }) {
-  if (!transcription) return null;
+  const [visibleTranscription, setVisibileTranscription] = useState("");
+
+  useEffect(() => {
+    let index = 0;
+
+    if (transcription) {
+      const intervalId = setInterval(() => {
+        setVisibileTranscription((prev) => prev + transcription[index]);
+
+        index += 1;
+        if (index >= transcription.length) {
+          clearInterval(intervalId);
+        }
+      }, 100);
+
+      return () => clearInterval(intervalId);
+    }
+  }, [transcription]);
 
   return (
     <div
@@ -13,7 +30,7 @@ export default function TranscriptionOverlay({ transcription }) {
       }}
     >
       <div>
-        <h1>Transcription: {transcription}</h1>
+        <h1>Transcription: {visibleTranscription}</h1>
       </div>
     </div>
   );
